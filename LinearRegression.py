@@ -11,17 +11,16 @@ class LinearRegression:
         self.learning_rate = learning_rate
         self.epochs = epochs
     def gradientDecent(self):
-        for j in range(0, self.epochs):
-            d_theta1 = 0
-            d_theta2 = 0
-            for i in range(0, self.epochs):
-                d_theta1 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i]) * self.x[i]
-                d_theta2 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i])
+        d_theta1 = 0
+        d_theta2 = 0
+        for i in range(0, self.epochs):
+            d_theta1 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i]) * self.x[i]
+            d_theta2 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i])
 
-            self.theta1 = self.theta1 - d_theta1 / self.epochs
-            self.theta2 = self.theta2 - d_theta2 / self.epochs
+        self.theta1 = self.theta1 - d_theta1 / self.epochs
+        self.theta2 = self.theta2 - d_theta2 / self.epochs
 
-            return self.theta1, self.theta2
+        return self.theta1, self.theta2
 
 if __name__ == '__main__':
     x = []
@@ -34,10 +33,11 @@ if __name__ == '__main__':
     epochs = 10
     learning_rate = 1e-5
     LR = LinearRegression(x, y, theta_1, theta_2, epochs, learning_rate)
-    result_theta1, result_theta2 = LR.gradientDecent()
-    clear_output(wait=True)
+    for i in range(0, epochs):
+        result_theta1, result_theta2 = LR.gradientDecent()
+        plt.plot(x, y, 'ro')
+        plt.plot(x, np.asarray(result_theta1) * x + np.asarray(result_theta2))
+        plt.show()
+        clear_output(wait=True)
     print("Theta1_gradienDescent: {}".format(result_theta1))
     print("Theta2_gradienDescent: {}".format(result_theta2))
-    plt.plot(x, y, 'ro')
-    plt.plot(x, np.asarray(result_theta1) * x + np.asarray(result_theta2))
-    plt.show()
