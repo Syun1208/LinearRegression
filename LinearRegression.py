@@ -14,8 +14,8 @@ class LinearRegression:
         d_theta1 = 0
         d_theta2 = 0
         for i in range(0, self.epochs):
-            d_theta1 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i]) * self.x[i]
-            d_theta2 += self.learning_rate * 2 * (self.theta1 * self.x[i] - self.y[i])
+            d_theta1 += self.learning_rate * 2 * (self.theta1 * self.x[i] + self.theta2 - self.y[i]) * self.x[i]
+            d_theta2 += self.learning_rate * 2 * (self.theta1 * self.x[i] + self.theta2 - self.y[i])
 
         self.theta1 = self.theta1 - d_theta1 / self.epochs
         self.theta2 = self.theta2 - d_theta2 / self.epochs
