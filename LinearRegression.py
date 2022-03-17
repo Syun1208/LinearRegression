@@ -25,12 +25,12 @@ class LinearRegression:
 if __name__ == '__main__':
     x = []
     y = []
-    for j in range(0, 39):
+    epochs = 10
+    for j in range(0, epochs):
         x.append(np.random.randint(-50, 50))
         y.append(np.random.randint(-50, 50))
     theta_1 = -3
     theta_2 = 10
-    epochs = 10
     learning_rate = 1e-5
     LR = LinearRegression(x, y, theta_1, theta_2, epochs, learning_rate)
     for i in range(0, epochs):
